@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledApp>
+      <SectionHeader>
+      </SectionHeader>
+      <Footer>
+        <ContactUs>
+          <li>聯絡我們</li>
+          <li>Discord</li>
+          <li>wonderfood@gmail.com</li>
+        </ContactUs>
+      </Footer>
+    </StyledApp>
   );
 }
 
+const StyledApp = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
+const SectionContainer = styled.section`
+  width: 100%;
+  height: auto;
+`;
+
+const SectionHeader = styled(SectionContainer)`
+
+`;
+
+const Footer = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 55px 0;
+  background-color: #383838;
+`;
+
+const ContactUs = styled.ul`
+  list-style-type: none; 
+  display: flex;
+  padding: 0;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #fff;
+  li {
+
+  }
+`;
 export default App;

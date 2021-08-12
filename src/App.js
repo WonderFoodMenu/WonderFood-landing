@@ -6,27 +6,95 @@ import { virtualize, bindKeyboard } from 'react-swipeable-views-utils';
 import { mod } from 'react-swipeable-views-core';
 import EmailIcon from './img/ic_mail@3x.png';
 import DiscordIcon from './img/ic_discord@3x.png';
-import Demo_1_Img from './img/demo_1@3x.png';
 import ReviewImg from './img/recommendation@3x.png';
 import SlideLeftIcon from './img/left-slide-btn@3x.png';
 import SlideRightIcon from './img/right-slide-btn@3x.png';
+import Demo_1_Img from './img/demo_1@3x.png';
+import Demo_2_Img from './img/demo_2@3x.png';
+import Demo_3_Img from './img/demo_3@3x.png';
+import Demo_4_Img from './img/demo_4@3x.png';
+
+import MenuIcon from './img/ic_menu@3x.png';
+import SearchIcon from './img/ic_search@3x.png';
+import FilterIcon from './img/ic_filter@3x.png';
 
 const slideRenderer = (params) => {
   const { index, key } = params;
-  switch (mod(index, 3)) {
+  const realIndex = mod(index, 3);
+  switch (realIndex) {
     case 0:
-      return <Case1 key={key}>slide n°1</Case1>;
+      return (
+        <Case key={key}>
+          <CaseContainer>
+            <CaseContent>
+              <CaseTitle>
+                <CaseIcon src={MenuIcon}/>
+                菜單電子化 
+              </CaseTitle>
+              <CaseDesc>
+                <span>餐廳數量齊全</span><br/>
+                網紅名店到巷口小吃，不分種類全部網羅。<br/><br/>
+                <span>菜單列表呈現</span><br/>
+                餐點資訊一目暸然，快速瀏覽無障礙！<br/><br/>
+                <span>價格資訊透明 </span><br/>
+                餐點價格即時更新，掌握預算不苦惱。<br/><br/>
+              </CaseDesc>
+            </CaseContent>
+            <CaseDemoImg src={Demo_2_Img}/>
+          </CaseContainer>
+        </Case>
+      );
     case 1:
-      return <Case2 key={key}>slide n°2</Case2>;
+      return (
+        <Case key={key}>
+          <CaseContainer>
+            <CaseDemoImg src={Demo_3_Img}/>
+            <CaseContent>
+              <CaseTitle>
+                <CaseIcon src={SearchIcon}/>
+                快速搜尋 
+              </CaseTitle>
+              <CaseDesc>
+                <span>關鍵字搜尋比對</span><br/>
+                輸入關鍵字就能快速搜尋特定餐點，價格排序、條件篩選也沒問題！<br/><br/>
+                <span>標籤式引導搜尋</span><br/>
+                吃飯時間沒想法？跟隨＃標籤引導，快速找到下一餐！<br/><br/>
+                <span>主題式菜色分類 </span><br/>
+                今晚想來點異國料理？主題式分類輕鬆網羅各式風格的餐點！<br/><br/>
+              </CaseDesc>
+            </CaseContent>
+          </CaseContainer>
+        </Case>
+      );
     case 2:
-      return <Case3 key={key}>slide n°3</Case3>;
+      return (
+        <Case key={key}>
+          <CaseContainer>
+            <CaseContent>
+              <CaseTitle>
+                <CaseIcon src={FilterIcon}/>
+                食材過濾 
+              </CaseTitle>
+              <CaseDesc>
+                <span>宗教信仰食材過濾</span><br/>
+                因宗教信仰而不吃的特定食材過濾，用餐不煩惱！<br/><br/>
+                <span>過敏源過濾</span><br/>
+                海鮮、牛奶等過敏源過濾，享用美食更安心！<br/><br/>
+                <span>喜好過濾 </span><br/>
+                調味料篩選，不用再為了香菜和老闆過不去！<br/><br/>
+              </CaseDesc>
+            </CaseContent>
+            <CaseDemoImg src={Demo_4_Img}/>
+          </CaseContainer>
+        </Case>
+      );
     default: return null;
   }
 }
 const VirtualizeSwipeableViews = bindKeyboard(virtualize(SwipeableViews));
 const App = () => {
   const [index, setIndex] = useState(0);
-  console.log(index);
+  const realIndex = mod(index, 3);
   return (
     <StyledApp>
       <Nav>
@@ -63,13 +131,26 @@ const App = () => {
         </Desc>
       </SectionDescript>
       <SectionShowcase>
-        <VirtualizeSwipeableViews
+        <ShowcaseContainer
           index={index} 
           enableMouseEvents 
-          onChangeIndex={(_index)=>setIndex(_index)}
+          onChangeIndex={(_index, last)=>setIndex(_index)}
           slideRenderer={slideRenderer}
         />
         <ShowcaseController>
+          <ShowcaseButtons>
+            <PrevBtn onClick={()=>setIndex(index - 1)}>
+              <img alt="PrevBtn" src={SlideLeftIcon}/>
+            </PrevBtn>
+            <NextBtn onClick={()=>setIndex(index + 1)}>
+              <img alt="NextBtn" src={SlideRightIcon}/>
+            </NextBtn>
+          </ShowcaseButtons>
+          <ShowcaseIndicator>
+            <IndicatorDot isActive={realIndex === 0} onClick={()=>{setIndex(0)}}/>
+            <IndicatorDot isActive={realIndex === 1} onClick={()=>setIndex(1)}/>
+            <IndicatorDot isActive={realIndex === 2} onClick={()=>setIndex(2)}/>
+          </ShowcaseIndicator>
         </ShowcaseController>
       </SectionShowcase>
       <SectionReviews>
@@ -250,20 +331,78 @@ const Desc = styled.p`
   max-width: 781px;
 `;
 
-const SectionShowcase = styled.div``;
+const SectionShowcase = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+const ShowcaseContainer = styled(VirtualizeSwipeableViews)`
+  position: relative;
+  height: 610px;
+`;
 
 const ShowcaseController = styled.div`
-  z-index: 1;
   top: 0;
   left: 0;
+  pointer-events: none;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  /* background: #fff; */
+`;
+
+const ShowcaseButtons = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: inherit;
-  background: #fff;
 `;
+
+const ShowcaseIndicator = styled.ul`
+  position: absolute;
+  display: flex;
+  width: 44px;
+  flex: none;
+  bottom: 0px;
+  height: auto;
+  justify-content: space-around;
+  align-items: center;
+  list-style-type: none; 
+  padding: 0;
+  margin: 0 0 25px;
+  
+`;
+
+const IndicatorDot = styled.li`
+  pointer-events: auto;
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: #FFFFFF;
+  opacity: ${({isActive})=> isActive ? 1 : 0.5};
+  border-radius: 8px;
+`;
+
+const ControlBtn = styled.button`
+  pointer-events: auto;
+  display: block;
+  width: 27px;
+  padding: 0;
+  margin: 0 40px;  
+  outline: none;
+  background: none;
+  border: none;
+  img{
+    width: 100%;
+  }
+`;
+
+const PrevBtn = styled(ControlBtn)``;
+const NextBtn = styled(ControlBtn)``;
 
 const Case = styled.div`
   width: 100%;
@@ -273,23 +412,48 @@ const Case = styled.div`
   align-items: center;
   background: #369675;
 `;
+
+
+const CaseContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const CaseDemoImg = styled.img`
   width: 208px;
 `;
 
-const Case1 = styled(Case)`
-  border: 1px solid #fff;
-  background: #FEA900,
+const CaseContent = styled.div`
+  margin: 135px;
 `;
 
-const Case2 = styled(Case)`
-  border: 1px solid #fff;
-  background: #B3DC4A,
+const CaseTitle = styled.h1`
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 122%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  margin-bottom: 30px;
 `;
 
-const Case3 = styled(Case)`
-  border: 1px solid #fff;
-  background: #6AC0FF,
+const CaseIcon = styled.img`
+  width: 50px;
+  margin-right: 10px;
+`;
+
+const CaseDesc = styled.p`
+  font-size: 20px;
+  max-width: 353px;
+  line-height: 122%;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  span{
+    font-weight: bold;
+  }
 `;
 
 const SectionReviews = styled(SectionContainer)`

@@ -1,6 +1,6 @@
 
 import React , { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import SwipeableViews from 'react-swipeable-views';
 import { virtualize, bindKeyboard } from 'react-swipeable-views-utils';
 import { mod } from 'react-swipeable-views-core';
@@ -17,6 +17,23 @@ import Demo_4_Img from './img/demo_4@3x.png';
 import MenuIcon from './img/ic_menu@3x.png';
 import SearchIcon from './img/ic_search@3x.png';
 import FilterIcon from './img/ic_filter@3x.png';
+
+const SIZE = {
+  tablet: 1024,
+  mobile: 768,
+};
+
+const media = Object.keys(SIZE).reduce((acc, key) => {
+  return {
+    ...acc,
+    [key]: (...args) => css`
+      @media (max-width: ${SIZE[key]}px) {
+        ${css(...args)}
+      }
+    `,
+  };
+}, {});
+
 
 const slideRenderer = (params) => {
   const { index, key } = params;
@@ -269,6 +286,9 @@ const HeaderContainer = styled.div`
   transform: translateY(35px);
   display: flex;
   justify-content: space-between;
+  ${media.tablet`
+      
+  `}
 `;
 
 const Buttons = styled.div`

@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior-y: contain;
   }
+  a { color: inherit; text-decoration: none; }
   ${'' /* button {
     background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
@@ -30,7 +31,6 @@ const GlobalStyle = createGlobalStyle`
     line-height: normal !important;
     vertical-align: middle;
   }
-  a { color: inherit; text-decoration: none; }
   a > * { opacity: inherit; }
   a:hover {
     opacity: .7;

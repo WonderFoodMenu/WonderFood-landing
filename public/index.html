@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>WonderFood</title>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#FF805C" />
+    <meta property="og:title" content="WonderFood"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://wonderfood.menu/"/>
+    <meta property="og:image" content="https://wonderfood.menu/share.jpg"/>
+    <meta property="og:site_name" content="WonderFood" />
+    <meta name="theme-color" content="#FF805C"/>
+    <!-- Social metadata -->
+    <meta itemprop="name" content="WonderFood">
+    <meta itemprop="image" content="https://wonderfood.menu/share.jpg">
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="找到你的理想天菜"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -22,13 +32,33 @@
 
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
+      Learn how to configure a non-root public URL|  by running `npm run build`.
     -->
-    <title>React App</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-B4YX64ZCNE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-B4YX64ZCNE');
+    </script> -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KW54WWD');</script>
+    <!-- End Google Tag Manager -->
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KW54WWD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <div id="modal-root"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

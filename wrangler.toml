@@ -1,0 +1,9 @@
+name = "wonderfood-landing"
+type = 'webpack'
+account_id = '268b1e1f64e15a4ae871442d6bd514dc'
+route = 'wonderfood.menu'
+zone_id = '8ee5479bbe13ccce632f9fb5e76c8d90'
+usage_model = ''
+workers_dev = false
+target_type = "webpack"
+site = {bucket = "./build",entry-point = "workers-site"}

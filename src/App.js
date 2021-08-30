@@ -114,14 +114,14 @@ const App = () => {
   const realIndex = mod(index, 3);
   return (
     <StyledApp>
-      <Nav>
+      {/* <Nav>
         <Brand>
           WonderFood
         </Brand>
-        <ContactUsButton>
+        <ContactUsButton as="a" href="mailto:solargang@gmail.com" target="_blank" rel="noreferrer" >
           聯絡我們
         </ContactUsButton>
-      </Nav>
+      </Nav> */}
       <SectionHeader>
         <HeaderContainer>
           <DemoImg alt="demo_1" src={Demo_1_Img}/>
@@ -130,8 +130,8 @@ const App = () => {
             <h3>找到你的理想天菜</h3>
             <span>菜單搜尋小幫手</span>
             <Buttons>
-              <a>試用DEMO</a>
-              <a>聯絡我們</a>
+              <a href="https://app.wonderfood.menu" target="_blank" rel="noreferrer" >試用DEMO</a>
+              <a href="mailto:solargang@gmail.com" target="_blank" rel="noreferrer" >聯絡我們</a>
             </Buttons>
           </HeaderBox>
         </HeaderContainer>
@@ -180,18 +180,15 @@ const App = () => {
       <Footer>
         <ContactUs>
           <li>
-            聯絡我們
+            <img alt="email" src={EmailIcon}/>
+            <a href="mailto:solargang@gmail.com" target="_blank" rel="noreferrer" >聯絡我們</a>
           </li>
           <li>
             <img alt="discord" src={DiscordIcon}/>
             Discord
           </li>
-          <li>
-            <img alt='email' src={EmailIcon}/>
-            wonderfood@gmail.com
-          </li>
         </ContactUs>
-        <Copyright>© 2020 WonderFood.</Copyright>
+        <Copyright>© 2021 WonderFood.</Copyright>
       </Footer>
     </StyledApp>
   );
@@ -208,6 +205,9 @@ const Nav = styled.div`
   background-color: #FF805C;
   padding: 0 165px;
   border-bottom: 1px solid #fff;
+  ${media.tablet`
+    justify-content: center;
+  `}
 `;
 
 const Brand = styled.div`
@@ -224,6 +224,9 @@ const ContactUsButton = styled.div`
   line-height: 122%;
   letter-spacing: 0.02em;
   color: #FFFFFF;
+  ${media.tablet`
+    display: none;    
+  `}
 `;
 
 const SectionContainer = styled.section`
@@ -237,14 +240,19 @@ const SectionHeader = styled(SectionContainer)`
   align-items: center;
   justify-content: center;
   background-color: #FF805C;
-  padding-top: 78px;
+  padding-top: 120px;
   min-height: auto;
   max-height: 616px;
   overflow: hidden;
+  ${media.tablet`
+    max-height: 100%;
+    padding-top: 40px;
+  `}
 `;
 
 const DemoImg = styled.img`
   width: 280px;
+
 `;
 
 const HeaderBox = styled.div`
@@ -253,6 +261,9 @@ const HeaderBox = styled.div`
   justify-content: center;
   margin: 0 0 15px;
   margin-left: 211px;
+  ${media.tablet`
+    margin: 0 0 35px;
+  `}
   h1 {
     font-weight: bold;
     font-size: 44px;
@@ -287,7 +298,10 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   ${media.tablet`
-      
+    transform: translateY(0);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
   `}
 `;
 
@@ -325,6 +339,10 @@ const SectionDescript = styled(SectionContainer)`
     min-height: auto;
     max-height: 616px;
     background: #fff;
+    ${media.tablet`
+      padding: 60px 40px;
+      font-size: 24px;
+    `}
 `;
 
 const Title = styled.h1`
@@ -337,7 +355,9 @@ const Title = styled.h1`
   letter-spacing: 0.02em;
   color: #369675;
   max-width: 781px;
-
+  ${media.tablet`
+    font-size: 24px;
+  `}
 `;
 
 const Desc = styled.p`
@@ -349,6 +369,9 @@ const Desc = styled.p`
   letter-spacing: 0.02em;
   color: #383838;
   max-width: 781px;
+  ${media.tablet`
+    font-size: 16px;
+  `}
 `;
 
 const SectionShowcase = styled.div`
@@ -358,7 +381,10 @@ const SectionShowcase = styled.div`
 
 const ShowcaseContainer = styled(VirtualizeSwipeableViews)`
   position: relative;
-  height: 610px;
+  min-height: 610px;
+  ${media.tablet`
+    min-height: auto;
+  `}
 `;
 
 const ShowcaseController = styled.div`
@@ -419,18 +445,27 @@ const ControlBtn = styled.button`
   img{
     width: 100%;
   }
+ ${media.tablet`
+    display: none;
+  `}
 `;
 
 const PrevBtn = styled(ControlBtn)``;
 const NextBtn = styled(ControlBtn)``;
 
 const Case = styled.div`
+  overflow: hidden;
+  position: relative;
+  max-height: 610px;
   width: 100%;
-  height: 610px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #369675;
+  ${media.tablet`
+    align-items: flex-start;
+  `}
 `;
 
 
@@ -438,14 +473,23 @@ const CaseContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${media.tablet`
+    flex-direction: column;
+  `}
 `;
 
 const CaseDemoImg = styled.img`
-  width: 208px;
+  height: 420px;
+  ${media.tablet`
+      display: none;
+  `}
 `;
 
 const CaseContent = styled.div`
   margin: 135px;
+  ${media.tablet`
+    margin: 50px;
+  `}
 `;
 
 const CaseTitle = styled.h1`
@@ -458,6 +502,9 @@ const CaseTitle = styled.h1`
   letter-spacing: 0.02em;
   color: #FFFFFF;
   margin-bottom: 30px;
+  ${media.tablet`
+    font-size: 24px;
+  `}
 `;
 
 const CaseIcon = styled.img`
@@ -474,6 +521,9 @@ const CaseDesc = styled.p`
   span{
     font-weight: bold;
   }
+  ${media.tablet`
+    font-size: 14px;
+  `}
 `;
 
 const SectionReviews = styled(SectionContainer)`
@@ -481,12 +531,21 @@ const SectionReviews = styled(SectionContainer)`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  min-height: 751px;
+  padding: 95px 80px;
+  min-height: auto;
   background: #fff;
+  ${media.tablet`
+    padding: 60px 40px;
+  `}
 `;
 
 const ReviewSnapshopImg = styled.img`
   height: 314px;
+  ${media.tablet`
+    width: 100%;
+    height: auto;
+    /* display: none; */
+  `}
 `;
 
 
@@ -506,7 +565,7 @@ const ContactUs = styled.ul`
   padding: 0;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   li {
     display: flex;
     align-items: center;
@@ -515,11 +574,17 @@ const ContactUs = styled.ul`
     font-size: 16px;
     line-height: 122%;
     margin: 0 20px;
+    ${media.tablet`
+      margin: 10px 0;
+    `}
     img{
       margin-right: 5px;
       width: 16px;
     }
   }
+  ${media.tablet`
+    flex-direction: column;
+  `}
 `;
 
 const Copyright = styled.span`
